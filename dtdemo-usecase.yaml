@@ -1,0 +1,59 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: dtdemo-usecase
+  name: dtdemo-usecase
+  namespace: dtdemos-usecase
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dtdemo-usecase
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: dtdemo-usecase
+    spec:
+      containers:
+        - image: domuharahap/dtdemo-usecase
+          name: dtdemo-usecase
+          resources:
+            limits:
+              memory: "512Mi"  # Set memory limit
+              cpu: "500m" # Set the CPU limit to 500 milliCPU
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
+          env:
+            - name: JAVA_OPTS
+              value: >
+                -Xms256m
+                -Xmx256m
+                -XX:+ExitOnOutOfMemoryError
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: dtdemo-usecase
+    pod-template-hash: 8665dcd88f
+  name: dtdemos-usecase
+  namespace: dtdemos-usecase
+spec:
+  ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 8080
+  selector:
+    app: dtdemo-usecase
+    pod-template-hash: 8665dcd88f
+  type: LoadBalancer
+status:
+  loadBalancer: {}
