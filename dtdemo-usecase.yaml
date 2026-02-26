@@ -4,24 +4,23 @@ kind: Deployment
 metadata:
   creationTimestamp: null
   labels:
-    app: dtdemo-usecase
-  name: dtdemo-usecase
-  namespace: dtdemos-usecase
+    app: backend-usecase
+  name: backend-usecase
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: dtdemo-usecase
+      app: backend-usecase
   strategy: {}
   template:
     metadata:
       creationTimestamp: null
       labels:
-        app: dtdemo-usecase
+        app: backend-usecase
     spec:
       containers:
-        - image: domuharahap/dtdemo-usecase
-          name: dtdemo-usecase
+        - image: domuharahap/dtdemo-usecase:2.3
+          name: backend-usecase
           resources:
             limits:
               memory: "512Mi"  # Set memory limit
@@ -42,18 +41,15 @@ kind: Service
 metadata:
   creationTimestamp: null
   labels:
-    app: dtdemo-usecase
-    pod-template-hash: 8665dcd88f
-  name: dtdemos-usecase
-  namespace: dtdemos-usecase
+    app: backend-usecase
+  name: backend-services
 spec:
   ports:
-    - port: 80
+    - port: 8080
       protocol: TCP
       targetPort: 8080
+#  type: LoadBalancer
   selector:
-    app: dtdemo-usecase
-    pod-template-hash: 8665dcd88f
-  type: LoadBalancer
+    app: backend-usecase
 status:
   loadBalancer: {}
