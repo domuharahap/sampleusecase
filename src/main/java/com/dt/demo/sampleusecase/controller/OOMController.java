@@ -1,7 +1,5 @@
 package com.dt.demo.sampleusecase.controller;
 
-import com.dt.demo.sampleusecase.domain.MovieQuoteService;
-import com.dt.demo.sampleusecase.domain.User;
 import net.datafaker.Faker;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,14 +11,11 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.dt.demo.sampleusecase.domain.UserGenerator.generateUser;
 
 @RestController
 @RequestMapping("/api")
 public class OOMController {
-    private static final List<byte[]> memoryLeakList = new ArrayList<>();
     private static final Logger logger = LoggerFactory.getLogger(OOMController.class);
-    private static final MovieQuoteService movieQuoteService = new MovieQuoteService();
 
     private static final List<byte[]> MEMORY_HOLDER = new ArrayList<>();
     private final List<Thread> CPU_WORKERS = new ArrayList<>();
