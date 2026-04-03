@@ -24,7 +24,7 @@ public class PaymentController {
         Thread.sleep(500 + new Random().nextInt(1500));
 
         // Simulate random failure (great for demos)
-        if (Math.random() < 0.2) {
+        if (Math.random() < 0.2 || "DebitCard".equals(req.getMethod())) {
             log.error("Payment failed for user={}", req.getUserId());
             throw new RuntimeException("Payment gateway error");
         }
@@ -36,6 +36,8 @@ public class PaymentController {
         result.put("transactionId", UUID.randomUUID().toString());
         result.put("method", req.getMethod());
         result.put("Date", date);
+        result.put("fullName", req.getFullName());
+        result.put("amount", req.getAmount());
 
         return ResponseEntity.ok(result);
     }

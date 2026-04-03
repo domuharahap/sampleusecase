@@ -9,7 +9,15 @@ public class Payment {
     private String method;
     private Date paymentTime;
     private String status;
+    private String fullName;
 
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
 
     public String getUserId() {
         return userId;
@@ -59,6 +67,7 @@ public class Payment {
                 ", method='" + method + '\'' +
                 ", paymentTime=" + paymentTime +
                 ", status='" + status + '\'' +
+                ", fullName='" + fullName + '\''+
                 '}';
     }
 }

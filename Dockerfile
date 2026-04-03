@@ -1,4 +1,4 @@
-FROM openjdk:22-jdk-slim
+FROM openjdk:25-ea-25-jdk-slim
 COPY ./target/dtdemo-usecase-1.0-SNAPSHOT.jar dtdemo-usecase-1.0-SNAPSHOT.jar
 
 EXPOSE 8080

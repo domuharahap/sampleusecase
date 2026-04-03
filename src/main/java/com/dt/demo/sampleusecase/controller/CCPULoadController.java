@@ -23,6 +23,7 @@ public class CCPULoadController {
             for (int i = 0; i < 100 * workMultiplier; i++) {
                 // Simulate CPU-intensive work
                 double result = Math.sin(i) * Math.cos(i);
+                result = Math.pow(result, 2);
             }
             try {
                 Thread.sleep(1000); // Sleep for 1 second to slow down the loop (adjust as needed)
